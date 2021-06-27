@@ -1,0 +1,93 @@
+{% extends 'layout/layout.html' %} 
+{% load static %} 
+{% block block_title%} Vue d'ensemble {% endblock %}
+
+
+{% block block_sub_title %}  {% endblock %}
+
+ {% block block_content %}
+		<div class="panel-body">
+							<div class="row">
+								<div class="col-md-3">
+									<div class="metric">
+										<span class="icon"><i class="fa fa-user" aria-hidden="true"></i></span>
+										<p>
+											<span class="number">{{nb_ac}}</span>
+											<span class="title">Agents communautaires</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+										<span class="icon"><i class="fa fa-shopping-bag"></i></span>
+										<p>
+											<span class="number">{{nb_femme}}</span>
+											<span class="title">Femmes suivis</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+										<span class="icon"><i class="fa fa-eye"></i></span>
+										<p>
+											<span class="number">{{grossseses}}</span>
+											<span class="title">Grossesses en cours</span>
+										</p>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="metric">
+										<span class="icon"><i class="fa fa-bar-chart"></i></span>
+										<p>
+											<span class="number">{{accouchement}}</span>
+											<span class="title">Accouchements</span>
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-10">
+									
+									<div class="panel">
+										<div class="panel-heading">
+											<h4 class="panel-title">Statistiques par AC </h3> 
+											
+										</div>
+										<div class="panel-body no-padding">
+											<table class="table table-striped">
+												<thead>
+													<tr><th>Nom de l'AC</th><th style='text-align: center'>Femmes Suivies</th><th style='text-align: center'>Femmes enceintes</th><th style='text-align: center'>Accouchements</th><th>% CPN</th></tr>
+												</thead>
+												<tbody>
+													{% for cases in statAgent %}
+														<tr><td><a href="{% url 'dossierac' ac=cases.opened_by_username %}">{{cases.opened_by_username__first_name}} {{cases.opened_by_username__last_name}} </a></td><td style='text-align: center'>{{cases.femme}} </td><td style='text-align: center'>{{cases.enceinte}} </td><td style='text-align: center'>{{cases.accouche}} </td><td><span class="label label-success">COMPLETED</span></td></tr>
+													{% endfor %}
+												</tbody>
+											</table>
+										</div>
+										{% comment %} <div class="panel-footer">
+											<div class="row">
+												<div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Last 24 hours</span></div>
+												<div class="col-md-6 text-right"><a href="#" class="btn btn-primary">View All Purchases</a></div>
+											</div>
+										</div> {% endcomment %}
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="weekly-summary text-right">
+										<span class="number"> {{cpn}} </span> <span class="percentage"><i class="fa {{class_cpn }}"></i> {{varCPN  | floatformat:"0" }}%</span>
+										<span class="info-label">CPN du mois</span>
+									</div>
+									<div class="weekly-summary text-right">
+										<span class="number">{{cpon}} </span> <span class="percentage"><i class="fa {{class_cpon}}"></i> {{varcpon  | floatformat:"0"  }} %</span>
+										<span class="info-label">CPON du mois</span>
+									</div>
+									<div class="weekly-summary text-right">
+										<span class="number"> {{nb_ref}} </span> <span class="percentage"><i class=" fa {{class_ref}}"></i> {{varRef  | floatformat:"0" }} %</span>
+										<span class="info-label">Références du mois</span>
+									</div>
+								</div>
+							</div>
+						</div>
+ {% endblock %}

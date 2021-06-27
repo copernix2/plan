@@ -1,0 +1,164 @@
+{% extends 'layout/layout.html' %} 
+{% load static %} 
+{% block block_title%} Information sur la femme {% endblock %}
+
+
+{% block block_sub_title %}  {% endblock %}
+
+{% block block_content %}
+    <div class='row'>
+        <div class='col-md-4'>
+			<!-- PROFILE DETAIL -->
+			<div style="margin-top: -45px;" class="profile-detail">
+				<div class="profile-info">
+					<h4 class="heading">Identification de la femme</h4>
+					<ul class="list-unstyled list-justify">
+                   
+                    
+						<li>Nom <span>{{ femmesd.name  | upper}}</span></li>
+						<li>Age <span>{{ femmesd.age_cal | upper }}</span></li>
+						<li>Téléphone <span>{{femmesd.telephone}}</span></li>
+						<li>Adresse <span>{{femmesd.Adress | upper}}</span></li>
+                        <li>Nom Mari <span>{{ femmesd.nom_mari | upper }}</span></li>
+                         <li>Adresse <span>{{femmesd.Adress | upper}}</span></li>
+                        <li>Nom Mari <span>{{ femmesd.nom_mari | upper }}</span></li>
+                        <li> Première grosssese :  <span>{{femmesd.prime_grossesse |upper}}</span></li> 
+                        {% if femmesd.membre_ocb == 'oui'  %}
+                            <li>Groupe de soutien <span>{{ femmesd.groupe_soutien | upper }}</span></li>
+                            <li> Maraine <span>{{femmesd.marainne | upper}}</span></li>
+                            <li>Téléphone maraine <span>{{ femmesd.tel_maraine | upper }}</span></li>
+
+                        {% endif %}
+                        
+                        {% if femmesd.prime_grossesse ==  'non' %}
+                            <li>Nombre de grosssese antérieur: <span>{{ femmesd.nombre_grossesse | upper }}</span></li>
+                            <li> Nombre d'enfant vivants :  <span>{{femmesd.enfant_vivant}}</span></li> 
+                            <li> Complications précédentes:  <span>{{femmesd.complication_precedent | upper}}</span></li> 
+                           
+                        {% endif %}
+                         <li> Facteurs de risque:  <span>{{femmesd.complication | upper}}</span></li> 
+                       
+
+
+
+
+						<li>Statut <span class =' label label-warning' style = ' font-size: 14px;'>
+                            {% if femmesd.enceinte == 'oui' %}
+                                femme enceinte
+                            {% else %}
+                                
+                            {% endif %}
+                           
+                        </span></li>
+                    
+                    </ul>
+				</div>
+               
+                    
+                   
+               
+			</div>
+			<!-- END PROFILE DETAIL -->
+        </div>
+         {% if femmesd.enceinte == 'oui' %}
+        <div class='col-md-4' style='margin-top : -45px'>
+            <div class="profile-info">
+                <h4 class="heading">Informations sur la grosssese</h4>
+                <ul class="list-unstyled list-justify">
+                    <li>Date prévue accouchement <span>{{ femmesd.date_accouchement }}</span></li>
+                    <li>Utilisation moustiquaire <span>
+                    {% if femmesd.moustiquaire == 'Oui' %}
+                        {{ femmesd.sous_moustiquaire }}
+                    {% else %}
+                        N'a pas de moustiquaire
+                    {% endif %}
+                    </span></li>
+                    <li>Dépistage VIH <span>{{ femmesd.depistagevih }}</span></li>
+                    <li>CPN 1  <span>
+                        {% if cpn1 == 'Oui' %}
+                            {{ femmesd.cpn1_date }}
+                        {% else %}
+                            N'a pas encore fait la CPN 1
+                        {% endif %}
+                    </span></li>
+                </ul>
+            </div>
+        
+
+        </div>
+        {% endif %}
+        {% if femmesd.accouche == 'oui' %}
+            <div class='col-md-4' style='margin-top : -45px'>
+                <div class="profile-info">
+                    <h4 class="heading">Informations sur l'accouchement</h4>
+                    <ul class="list-unstyled list-justify">
+                
+                        <li>Date accouchement <span>{{ femmesd.date_accouchement | date }}</span></li>
+                        <li>Age <span>{{ femmesd.age_cal }}</span></li>
+                        <li>Téléphone <span>{{femmesd.telephone}}</span></li>
+                        <li>Adresse <span>{{femmesd.Adress}}</span></li>
+                        <li>Nom Mari <span>{{ femmesd.nom_mari }}</span></li>
+                        <li>Enceinte <span>{{femmesd.enceinte}}</span></li>
+                    
+                    </ul>
+                </div>
+            
+
+            </div>
+        {% endif %}
+         {% if femmesd.accouche == 'oui' %}
+            <div class='col-md-4' style='margin-top : -45px'>
+                <div class="profile-info">
+                    <h4 class="heading">Suivi Post-Natal</h4>
+                    <ul class="list-unstyled list-justify">
+                
+                        <li>Date accouchement <span>{{ femmesd.date_accouchement | date }}</span></li>
+                        <li>Age <span>{{ femmesd.age_cal }}</span></li>
+                        <li>Téléphone <span>{{femmesd.telephone}}</span></li>
+                        <li>Adresse <span>{{femmesd.Adress}}</span></li>
+                        <li>Nom Mari <span>{{ femmesd.nom_mari }}</span></li>
+                        <li>Enceinte <span>{{femmesd.enceinte}}</span></li>
+                    
+                    </ul>
+                </div>
+            
+
+            </div>
+        {% endif %}
+
+        
+        <div class='col-md-4' style='margin-top : -45px'>
+            <div class="profile-info">
+                <h4 class="heading">Références</h4>
+                <ul class="list-unstyled list-justify">
+            
+                    <li>Date accouchement <span>{{ femmesd.date_accouchement | date }}</span></li>
+                    <li>Age <span>{{ femmesd.age_cal }}</span></li>
+                    <li>Téléphone <span>{{femmesd.telephone}}</span></li>
+                    <li>Adresse <span>{{femmesd.Adress}}</span></li>
+                    <li>Nom Mari <span>{{ femmesd.nom_mari }}</span></li>
+                    <li>Enceinte <span>{{femmesd.enceinte}}</span></li>
+                
+                </ul>
+            </div>
+        </div>
+         <div class='col-md-4' style='margin-top : -45px'>
+            <div class="profile-info">
+                <h4 class="heading">Covid-19 </h4>
+                <ul class="list-unstyled list-justify">
+            
+                    <li>Date accouchement <span>{{ femmesd.date_accouchement | date }}</span></li>
+                    <li>Age <span>{{ femmesd.age_cal }}</span></li>
+                    <li>Téléphone <span>{{femmesd.telephone}}</span></li>
+                    <li>Adresse <span>{{femmesd.Adress}}</span></li>
+                    <li>Nom Mari <span>{{ femmesd.nom_mari }}</span></li>
+                    <li>Enceinte <span>{{femmesd.enceinte}}</span></li>
+                
+                </ul>
+            </div>
+        </div>
+       
+    </div>
+   
+
+{% endblock %}

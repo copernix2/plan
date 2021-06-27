@@ -1,0 +1,51 @@
+{% extends 'layout/layout.html' %} 
+{% load static %} 
+{% block block_title%} Trouver une femme {{ test}}
+    
+{% endblock %}
+
+
+{% block block_sub_title %}  {% endblock %}
+
+{% block block_content %}
+    
+    <form class="navbar-form navbar-right" method='POST'>
+    
+        <div class="input-group">
+            <input type="text" name='search' class="form-control"  placeholder="trouver une femme">
+            <span class="input-group-btn"><button type="submit" class="btn btn-primary">Rechercher</button></span>
+        </div>
+    </form> 
+
+    <div class='row'>
+    <div class="col-md-12">
+									
+        <div class="panel">
+            
+            <div class="panel-body no-padding">
+                <table class="table table-striped">
+                    <thead>
+                        <tr><th>Femme</th><th style='text-align: center'>Age</th><th style='text-align: center'>Téléphone</th><th >Mari</th><th>OCB</th> <th>Maraine</th><th>Téléphone</th> <th>Enceinte</th> <th>Accouché</th> <th></th> </tr>
+                    </thead>
+                    <tbody>
+                        {% for cases in femmes %}
+                            <tr><td><a href="{% url 'woman-folder' ac=ac femme=cases.id %}">{{cases.name | upper}} </a></td> <td style='text-align: center'> {{cases.age_cal}}</td>
+                            <td style='text-align: center'>{{cases.telephone}} </td><td>{{cases.nom_mari | upper}} </td><td>{{cases.groupe_soutien}} </td>
+                            <td style='text-align: center'>{{cases.marainne}} </td><td style='text-align: center'>{{cases.tel_telephone}} </td><td style='text-align: center'>{{cases.enceinte}} </td><td style='text-align: center'>{{cases.accouche}} </td>
+                            <td><span class="label label-success"> </span></td></tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% comment %} <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Last 24 hours</span></div>
+                    <div class="col-md-6 text-right"><a href="#" class="btn btn-primary">View All Purchases</a></div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
+    </div>
+   
+
+{% endblock %}
